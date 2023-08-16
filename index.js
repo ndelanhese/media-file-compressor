@@ -23,37 +23,57 @@ const imageCompressor = async (file, width, height, quality) => {
 }
 
 const videoCompressor = async (file, width, height, hasAudio) => {
-    // console.log('Compressing video...');
-    // const ffmpeg = createFFmpeg({
-    //     log: true,
-    // });
+    console.log('compressing video...');
+    const {
+        createFFmpeg
+    } = FFmpeg;
+    const ffmpeg = createFFmpeg({
+        log: true,
+        logger: ({
+            message
+        }) => {
+            txt.value += "\n" + message;
+        }
+    });
+    await ffmpeg.load();
+    ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(file));
 
-    // ffmpeg.load();
+    const ffmpegArgs = ['-i', 'input.mp4', '-vf', `scale=<span class="math-inline">\{width\}\:</span>{height}`, '-c:v', 'libx264', '-crf', '18'];
 
-    // ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(file));
+    if (!hasAudio) {
+        ffmpegArgs.push('-an');
+    } else {
+        ffmpegArgs.push('-c:a', 'copy');
+    }
 
-    // ffmpeg.run('-i', 'input.mp4', '-vf', `scale=${width}:${height}`, '-c:a', 'copy', '-c:v', 'libx264', '-crf', '18', 'output.mp4');
+    ffmpegArgs.push('output.mp4');
 
-    // ffmpeg.FS('readFile', 'output.mp4');
+    try {
+        await ffmpeg.run(...ffmpegArgs);
+    } catch (err) {
+        console.error(err);
+    }
 
-    // const data = ffmpeg.FS('readFile', 'output.mp4');
+    ffmpeg.FS('readFile', 'output.mp4');
 
-    // const blob = new Blob([data.buffer], {
-    //     type: 'video/mp4',
-    // });
+    const data = ffmpeg.FS('readFile', 'output.mp4');
 
-    // const url = URL.createObjectURL(blob);
+    const blob = new Blob([data.buffer], {
+        type: 'video/mp4',
+    });
 
-    // const a = document.createElement('a');
-    // a.href = url;
-    // a.download = 'compressed.mp4';
-    // a.click();
+    const url = URL.createObjectURL(blob);
 
-    // URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'compressed.mp4';
+    a.click();
 
-    // console.log('Compressed video:', url);
-    // return (url)
-}
+    URL.revokeObjectURL(url);
+
+    console.log('Compressed video:', url);
+    return url;
+};
 
 
 const convertHeifToJpg = async (heifFile) => {
@@ -76,14 +96,15 @@ const compressor = async () => {
     const width = document.getElementById('width')?.value;
     const height = document.getElementById('height')?.value;
     const quality = document.getElementById('quality')?.value ?? 0.7;
-    const hasAudio = document.getElementById('hasAudio')?.target?.value;
+    const audioCheckbox = document.getElementById('hasAudio')?.value;
+    const hasAudio = audioCheckbox === 'on' ? true : false;
 
     const file = inputFile.files[0]
     const mimeType = file.type;
     const fileIsAnImage = mimeType.match(/image.*/g)
 
 
-    loadingLabel.replaceChildren('Loading...') 
+    loadingLabel.replaceChildren('Loading...')
     if (fileIsAnImage) {
         const [imageType] = fileIsAnImage
 
@@ -102,7 +123,7 @@ const compressor = async () => {
         await videoCompressor(file, width, height, hasAudio)
     }
 
-    loadingLabel.replaceChildren('') 
+    loadingLabel.replaceChildren('')
 }
 
 
