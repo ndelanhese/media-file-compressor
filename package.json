@@ -11,6 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.4",
+    "@ffmpeg/util": "^0.12.0",
+    "compressorjs": "^1.2.1",
     "tsx": "^3.12.7"
   }
 }

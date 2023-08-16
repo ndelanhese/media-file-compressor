@@ -5,6 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@ffmpeg/ffmpeg':
+    specifier: ^0.12.4
+    version: 0.12.4
+  '@ffmpeg/util':
+    specifier: ^0.12.0
+    version: 0.12.0
+  compressorjs:
+    specifier: ^1.2.1
+    version: 1.2.1
   tsx:
     specifier: ^3.12.7
     version: 3.12.7
@@ -230,8 +239,36 @@ packages:
     dev: false
     optional: true
 
+  /@ffmpeg/ffmpeg@0.12.4:
+    resolution: {integrity: sha512-YwdnZFxtKncEbg2ybJOZ8di7kxtVo6DP3FkWWn5E0MiXHXxCjgiIJNq5I+/04+OGC1nMvF3hdvGuRFxuogh/mQ==}
+    engines: {node: '>=18.17.0'}
+    dependencies:
+      '@ffmpeg/types': 0.12.0
+    dev: false
+
+  /@ffmpeg/types@0.12.0:
+    resolution: {integrity: sha512-AuR4K+L6v1/9hVOsikU4rGGT5nKulQa8HrtYhpgBEq0HojoWB1c9bq3TTkNBpEvS/gC17WDMVJrqIGgXOj1DXA==}
+    engines: {node: '>=16.6.0'}
+    dev: false
+
+  /@ffmpeg/util@0.12.0:
+    resolution: {integrity: sha512-8sHCW8H/ngqVhbRvCCX4e4uDNgZVoz8uNRry1zphIyzdX6flfBa2TmVwJ4g9/Qw//eAubEnuHaSxDGWWxcOTjg==}
+    engines: {node: '>=18.17.0'}
+    dev: false
+
+  /blueimp-canvas-to-blob@3.29.0:
+    resolution: {integrity: sha512-0pcSSGxC0QxT+yVkivxIqW0Y4VlO2XSDPofBAqoJ1qJxgH9eiUDLv50Rixij2cDuEfx4M6DpD9UGZpRhT5Q8qg==}
+    dev: false
+
   /buffer-from@1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+    dev: false
+
+  /compressorjs@1.2.1:
+    resolution: {integrity: sha512-+geIjeRnPhQ+LLvvA7wxBQE5ddeLU7pJ3FsKFWirDw6veY3s9iLxAQEw7lXGHnhCJvBujEQWuNnGzZcvCvdkLQ==}
+    dependencies:
+      blueimp-canvas-to-blob: 3.29.0
+      is-blob: 2.1.0
     dev: false
 
   /esbuild@0.17.19:
@@ -276,6 +313,11 @@ packages:
     resolution: {integrity: sha512-pmjiZ7xtB8URYm74PlGJozDNyhvsVLUcpBa8DZBG3bWHwaHa9bPiRpiSfovw+fjhwONSCWKRyk+JQHEGZmMrzw==}
     dependencies:
       resolve-pkg-maps: 1.0.0
+    dev: false
+
+  /is-blob@2.1.0:
+    resolution: {integrity: sha512-SZ/fTft5eUhQM6oF/ZaASFDEdbFVe89Imltn9uZr03wdKMcWNVYSMjQPFtg05QuNkt5l5c135ElvXEQG0rk4tw==}
+    engines: {node: '>=6'}
     dev: false
 
   /resolve-pkg-maps@1.0.0:
