@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx --watch index.js"
+    "dev": "node --watch index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
     "@ffmpeg/ffmpeg": "^0.12.4",
     "@ffmpeg/util": "^0.12.0",
     "compressorjs": "^1.2.1",
+    "heic2any": "^0.0.4",
     "tsx": "^3.12.7"
   }
 }

@@ -14,6 +14,9 @@ dependencies:
   compressorjs:
     specifier: ^1.2.1
     version: 1.2.1
+  heic2any:
+    specifier: ^0.0.4
+    version: 0.0.4
   tsx:
     specifier: ^3.12.7
     version: 3.12.7
@@ -313,6 +316,10 @@ packages:
     resolution: {integrity: sha512-pmjiZ7xtB8URYm74PlGJozDNyhvsVLUcpBa8DZBG3bWHwaHa9bPiRpiSfovw+fjhwONSCWKRyk+JQHEGZmMrzw==}
     dependencies:
       resolve-pkg-maps: 1.0.0
+    dev: false
+
+  /heic2any@0.0.4:
+    resolution: {integrity: sha512-3lLnZiDELfabVH87htnRolZ2iehX9zwpRyGNz22GKXIu0fznlblf0/ftppXKNqS26dqFSeqfIBhAmAj/uSp0cA==}
     dev: false
 
   /is-blob@2.1.0:
