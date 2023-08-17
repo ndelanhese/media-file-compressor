@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/compressorjs@1.2.1/dist/compressor.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.11.5/dist/ffmpeg.min.js"></script>  <script src="index.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.10.0/dist/ffmpeg.min.js"></script>
 </head>
+
 <body>
   <input type="file" name="file" id="file" onchange="compressor()" accept=".png,.jpeg,.jpg,.heic,.HEIC,.mp4,.raw,.heif">
   <p id="loading"></p>
@@ -22,5 +23,7 @@
       has audio
     </label>
   </div>
+  <script src="index.js"></script>
 </body>
+
 </html>

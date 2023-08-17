@@ -27,18 +27,13 @@ const videoCompressor = async (file, width, height, hasAudio) => {
     const {
         createFFmpeg
     } = FFmpeg;
-    const ffmpeg = createFFmpeg({
+    const ffmpeg = await createFFmpeg({
         log: true,
-        logger: ({
-            message
-        }) => {
-            txt.value += "\n" + message;
-        }
     });
     await ffmpeg.load();
     ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(file));
 
-    const ffmpegArgs = ['-i', 'input.mp4', '-vf', `scale=<span class="math-inline">\{width\}\:</span>{height}`, '-c:v', 'libx264', '-crf', '18'];
+    const ffmpegArgs = ['-i', 'input.mp4', '-vf', `scale=${width}:${height}`, '-c:v', 'libx264', '-crf', '18'];
 
     if (!hasAudio) {
         ffmpegArgs.push('-an');
